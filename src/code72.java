@@ -1,4 +1,7 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.StringJoiner;
 
 public class code72 {
     public static void main(String[] args) {
@@ -14,66 +17,40 @@ public class code72 {
         //最后一个目录名（如果存在）不能 以 '/' 结尾。
         //此外，路径仅包含从根目录到目标文件或目录的路径上的目录（即，不含 '.' 或 '..'）。
         //返回简化后得到的 规范路径 。
-        //    /home/         "/../"     "/home//foo/"       "/a/./b/../../c/"
+        //    /home/         "/../"     "/home//foo/"       "/a/./b/../../c/"   "/..."
 
 
-        System.out.println(simplifyPath2("/a/../../b/../c//.//"));
+        System.out.println(simplifyPath3("/a/./b/../../c/"));
 
     }
-    //没搞出来,明天继续想想这个题
-    public static String simplifyPath2(String path) {
-        char[] chars = path.toCharArray();
-        String[] split = path.split("/");//["", "a", ".", "b", "..", c,""]
-        String[] res=new String[path.length()+1];
-        Arrays.fill(res,"");
-        res[0]="/";
 
 
-        return Arrays.toString(res);
-    }
-    public static String simplifyPath1(String path) {
-        char[] chars = path.toCharArray();
-        String[] split = path.split("/");//["", "a", ".", "b", "..", c,""]
-        StringBuilder res= new StringBuilder("/");
-        String temp="";
 
-        for (int i = 0; i < split.length; i++) {
-            if (split[i].equals(""))  continue;
-            else if (!split[i].startsWith(".")&&!split[i].equals("")) {
-                res.append(split[i]);
-                res.append("/");
-                temp=split[i];
-            }
-            else if (split[i].equals(".")) continue;
-            else if (split[i].equals("..")) {
-                res.delete(res.length() - 1 - temp.length(), res.length());
-            }
-        }
-        if (res.length()>0&&res.charAt(res.length()-1)=='/') res.delete(res.length()-1,res.length());
-        if (res.length()==0) res.append("/");
-        return res.toString();
-    }
-    public static String simplifyPath(String path) {
-        char[] chars = path.toCharArray();
+    public static String simplifyPath3(String path) {
         String[] split = path.split("/");
-
-
-        StringBuilder res= new StringBuilder();
-        if (path.charAt(0)!='/') path="/"+path;//始终以斜杠 '/' 开头。
-        for (int i = 0; i < chars.length; i++) {
-            if (i>=1&&path.charAt(i)=='/'&&path.charAt(i-1)=='/'){//两个目录名之间必须只有一个斜杠 '/' 。
-                continue;
+        List<String> res=new ArrayList<>();//先获取所有有意义的路径
+        int idx=0;
+        for (int i = 0; i <split.length; i++) {
+            if (split[i].equals("."))continue; //遇到(.)就跳过
+            else if (split[i].equals("..")){//遇到(..)就删除前一项
+                if (idx>=1){
+                    res.remove(idx-1);//如果没有前一项,就不操作了
+                    idx--;
+                }
+            }else if (!split[i].equals("")) {//如果不是空字符串就添加
+                res.add(split[i]) ;
+                idx++;
             }
-            if (i<path.length()-1&&path.charAt(i)=='.'&&path.charAt(i+1)=='/')i++;//    防止./的情况
-            if (i<path.length()-1&&path.charAt(i)=='.'&&path.charAt(i+1)=='.') {
-                i += 2;
-                continue;
-            };//   防止../的情况
-            if (i==path.length()-1&&res.length()>=2&&path.charAt(i)=='/') continue;//最后一个目录名（如果存在）不能 以 '/' 结尾。
-            res.append(path.charAt(i));
         }
-
-
-        return res.toString();
+        StringBuilder sb=new StringBuilder("/");//开始拼接,其实可以用StringJoiner来拼接,但是leecode过不去
+        for (int i = 0; i < res.size(); i++) {
+            if (!res.get(i).equals("")) {
+                sb.append(res.get(i));
+                sb.append("/");
+            }
+        }
+        if (sb.toString().length()==1) return "/";
+        return sb.substring(0,sb.length()-1).toString();//去掉最后一个"/"
     }
+
 }
