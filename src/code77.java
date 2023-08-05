@@ -1,13 +1,34 @@
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class code77 {
     public static void main(String[] args) {
         //给定两个整数 n 和 k，返回范围 [1, n] 中所有可能的 k 个数的组合。
         //
         //你可以按 任何顺序 返回答案
-        System.out.println(combine(5, 2));
+        System.out.println(subsets(5, 2));
     }
+
+    public static List<List<Integer>> subsets(int n,int k) {
+        List<List<Integer>> res = new ArrayList<>();
+        res.add(new ArrayList<>());//size=1
+        int idx=1;
+        for (int i = 1; i < n+1; i++) {
+            int all = res.size();
+            for (int j = 0; j < all; j++) {
+                List<Integer> tmp = new ArrayList<>(res.get(j));//让tmp为前一轮的元素加上当前一个元素,即每一轮都是前一轮元加当前一个元
+                if (tmp.size()==k) continue;
+                tmp.add(i);
+                res.add(tmp);
+            }
+        }
+        return res.stream().filter(s -> s.size() == k).toList();
+    }
+
+
+
 
     public static List<List<Integer>> combine(int n, int k) {
         List<List<Integer>> res=new ArrayList<>();
