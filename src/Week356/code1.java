@@ -1,4 +1,4 @@
-package Month356;
+package Week356;
 
 public class code1 {
     public static void main(String[] args) {

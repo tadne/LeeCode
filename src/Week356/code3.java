@@ -1,4 +1,4 @@
-package Month356;
+package Week356;
 
 import java.util.*;
 import java.util.stream.Collectors;
