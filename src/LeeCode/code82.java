@@ -21,7 +21,7 @@ public class code82 {
 
     }
 
-    public static ListNode deleteDuplicates(ListNode head) {
+    private static ListNode deleteDuplicates(ListNode head) {
         if (head == null) {
             return head;
         }
