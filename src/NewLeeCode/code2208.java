@@ -13,7 +13,7 @@ public class code2208 {
         System.out.println(halveArray1(nums));
     }
     public static int halveArray1(int[] nums) {
-        PriorityQueue<Double> pq = new PriorityQueue<>();//优先队列
+        PriorityQueue<Double> pq = new PriorityQueue<Double>((a, b) -> b.compareTo(a));
         for (int num : nums) {//放入队列
             pq.offer((double) num);
         }
