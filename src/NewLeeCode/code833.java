@@ -45,6 +45,7 @@ public class code833 {
             if (map.get(indices[i])==null) map.put(indices[i], new String[]{targets[i], sources[i]});
             else map.put(indices[i]+s.length(), new String[]{targets[i], sources[i]});
         }
+
         for (int i = 0; i < len; i++) {
             String[] temp = map.get(i);
             String[] temp1 = map.get(i+s.length());
