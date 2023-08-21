@@ -1,8 +1,7 @@
-package Week357;
+package WeekRace.Week357;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class code2 {
     public static void main(String[] args) {

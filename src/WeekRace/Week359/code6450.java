@@ -1,6 +1,4 @@
-package Week359;
-
-import java.util.List;
+package WeekRace.Week359;
 
 public class code6450 {
     public static void main(String[] args) {

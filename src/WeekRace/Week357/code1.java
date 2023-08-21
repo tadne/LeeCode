@@ -1,4 +1,4 @@
-package Week357;
+package WeekRace.Week357;
 
 public class code1 {
     public static void main(String[] args) {

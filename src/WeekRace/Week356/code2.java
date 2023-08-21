@@ -1,4 +1,4 @@
-package Week356;
+package WeekRace.Week356;
 
 import java.util.Arrays;
 
