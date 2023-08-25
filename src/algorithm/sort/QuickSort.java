@@ -26,7 +26,7 @@ public class QuickSort {
     /**
      * 单边快速排序
      */
-    public static int partition(int[] nums, int left, int right){
+    private static int partition(int[] nums, int left, int right){
         int pv=nums[right];
         int i=left,j=left;
         while (j<right){
