@@ -100,27 +100,5 @@ public class code912 {
         }
     }
 
-    //第二种归并排序,  这种归并好理解些,但是效率没那么高
-    public static int[] mergeSort(int[] nums){
-        int[] temp=new int[nums.length];
-        split(nums,0,nums.length-1,temp);
-        return nums;
-    }
-    public static void split(int[] nums,int left,int right,int[] temp){
-        //治
-        if (left==right) return;
-        //分
-        int m=(left+right)>>>1;
-        split(nums,left,m,temp);
-        split(nums,m+1,right,temp);
-        //合并
-        merge(nums,left,m,temp,m+1,right);
-        System.arraycopy(temp,left,nums,left,right-left+1);
-    }
-    //合并两个有序数组
-    public static void merge(int[] nums, int FStart, int FRight ,int[] temp, int SStart,int SRight) {
-       //从后往前遍历处理大小
-    }
-
 
 }
