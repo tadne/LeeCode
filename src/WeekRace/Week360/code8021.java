@@ -1,6 +1,5 @@
 package WeekRace.Week360;
 
-import jdk.incubator.vector.VectorOperators;
 
 import java.util.*;
 import java.util.stream.Collectors;

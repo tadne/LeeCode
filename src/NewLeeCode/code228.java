@@ -44,17 +44,6 @@ public class code228 {
 
 
 
-//            if (i<n-1&&nums[i+1]==nums[i]) continue;
-//            else if (i<n-1&&nums[i+1]!=nums[i]+1) res.add(""+nums[i]);
-//            else if (i==n-1&&nums[i+1]!=nums[i]+1) res.add(""+nums[i]);
-//            int temp=i;
-//            while (temp < nums.length-1&&nums[temp+1]==nums[temp]+1) {
-//                temp++;
-//            }
-//            res.add(nums[i]+"->"+nums[temp]);
-//            i=temp;
-
-
 
 
 
