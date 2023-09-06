@@ -26,7 +26,6 @@ public class code392 {
     //再对每一份的首字母建立索引, 搜索时对有相同的字符先搜索前面的...
 
 
-
     public static boolean isSubsequence(String s, String t) {
         int idx=0;
         for (int i = 0; i < t.length(); i++) {
