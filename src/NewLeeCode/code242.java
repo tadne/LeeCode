@@ -34,6 +34,7 @@ public class code242 {
         }
         return true;
     }
+    //将s分为存入map计数
     public static void addNumChar(String s,HashMap<Character,Integer> map){
         for (int i = 0; i < s.length(); i++) {
             Integer integer = map.get(s.charAt(i));
