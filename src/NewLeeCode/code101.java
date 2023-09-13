@@ -22,7 +22,7 @@ public class code101 {
     }
 
 
-    public static class TreeNode {
+    private static class TreeNode {
     int val;
     TreeNode left;
     TreeNode right;
