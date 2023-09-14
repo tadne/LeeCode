@@ -33,7 +33,6 @@ public class code210 {
 //    著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
     //有向图的深度优先搜索
-
     // 存储有向图
     List<List<Integer>> edges;
     // 标记每个节点的状态：0=未搜索，1=搜索中，2=已完成
@@ -44,7 +43,6 @@ public class code210 {
     boolean valid = true;
     // 栈下标
     int index;
-
     public int[] findOrder(int numCourses, int[][] prerequisites) {
         //存储有向图
         edges = new ArrayList<List<Integer>>();
