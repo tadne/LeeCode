@@ -13,10 +13,9 @@ public class code121 {
 
     }
     public static int maxProfit(int[] prices) {
-        int r=prices.length-1;
-        int max=0;
-        int res=0;
-        while (r>=0){
+        int r=prices.length-1;//右指针
+        int max=0,res=0;
+        while (r>=0){//从右边开始找最大值,并计算差值取最大
             max=Math.max(max,prices[r]);
             res=Math.max(res,max-prices[r]);
             r--;

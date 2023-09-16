@@ -21,7 +21,6 @@ public class code169 {
             } else count--;//如果不同,计数-1
         }
         return res;
-
     }
     //map计数
     public int majorityElement(int[] nums) {
