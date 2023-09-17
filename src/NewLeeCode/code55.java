@@ -7,8 +7,23 @@ public class code55 {
         //数组中的每个元素代表你在该位置可以跳跃的最大长度。
         //
         //判断你是否能够到达最后一个下标。
+        int[] nums={2,3,1,1,4};
+        System.out.println(canJump1(nums));
     }
-
+    //这个题主要就是每走一步,就要对自己的接下来能走的步数进行刷新
+    public static boolean canJump1(int[] nums) {
+        int len =nums.length;
+        int idx=0;
+        int power=nums[0];//接下来能走的步数
+        for (int i = 1; i < len; i++) {
+            power--;
+            if (power<0) return false;//走不到了
+            else power=Math.max(power,nums[i]);//刷新步数
+            idx=i+power;
+        }
+        return idx==nums.length-1;
+    }
+    //这种比较难想,就是每一步都算做一个偏移
     public boolean canJump(int[] nums) {
         int len=nums.length;
         int index=0;

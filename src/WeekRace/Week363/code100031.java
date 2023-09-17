@@ -29,6 +29,7 @@ public class code100031 {
             int count=0;
             for (int j = 0; j < s.length(); j++) {
                 if (s.charAt(j)=='1') count++;
+                if (count>k) break;
             }
             if (count==k) sum+=nums.get(i);
             System.out.println(nums.get(i)+"====="+s+"======"+count);
