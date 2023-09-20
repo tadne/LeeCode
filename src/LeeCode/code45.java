@@ -26,4 +26,44 @@ public class code45 {
         }
         return step;
     }
+    public static int jump1(int[] nums) {//如果我们按照权重来看，显然后一位的权重比前一位大1，以此为基
+        int len = nums.length;//长度
+        int end = 0;//跳跃位置
+        int maxIndex = 0;//最大位置
+        int step = 0;//跳跃次数
+        for (int i = 0; i < len - 1; i++) {
+            maxIndex = Math.max(maxIndex, i + nums[i]);
+            if (i == end) {//如果到了最大位置，就跳跃。其中第一次跳跃是无条件的，因为要避免到达n-1的时候的跳跃
+                end = maxIndex;
+                step++;
+            }
+        }
+        return step;
+    }
+
+    public static int jump2(int[] nums) {
+        if (nums.length==1) return 0;
+        if (nums.length==2) return 1;
+        int maxIndex=0;
+        int time=0;
+        while (maxIndex+nums[maxIndex]<=nums.length-1){
+            if (nums[maxIndex]==1) {
+                maxIndex++;
+                time++;
+                continue;
+            }
+            int max=nums[maxIndex+1]+1;
+            int temp=maxIndex;
+            maxIndex=maxIndex+1;
+            for (int j = 1; j+maxIndex < nums.length&&j<=nums[temp]; j++) {
+                if (max<nums[maxIndex+j]+j){
+                    max=nums[maxIndex+j]+j;
+                    maxIndex=maxIndex+j;
+                }
+            }
+            // System.out.println(maxIndex);
+            time++;
+        }
+        return time;
+    }
 }

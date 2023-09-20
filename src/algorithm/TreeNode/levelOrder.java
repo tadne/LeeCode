@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 
-//二叉树层序遍历
+//二叉树层序遍历 :从上到下,从左到右
 public class levelOrder {
     public List<List<Integer>> levelOrder(TreeNode root) {
         List<List<Integer>> res = new ArrayList<>();

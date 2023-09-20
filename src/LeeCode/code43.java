@@ -1,86 +1,44 @@
 package LeeCode;
 
-public class code43 {
+public class code43
+{
     public static void main(String[] args) {
-        //给定一个长度为 n 的 0 索引整数数组 nums。初始位置为 nums[0]。
+        //给定两个以字符串形式表示的非负整数num1和num2，返回num1和num2的乘积，它们的乘积也表示为字符串形式。
         //
-        //每个元素 nums[i] 表示从索引 i 向前跳转的最大长度。换句话说，如果你在 nums[i] 处，你可以跳转到任意 nums[i + j] 处:
-        //
-        //0 <= j <= nums[i]
-        //i + j < n
-        //返回到达nums[n - 1] 的最小跳跃次数。生成的测试用例可以到达 nums[n - 1]。
+        //注意：不能使用任何内置的 BigInteger 库或直接将输入转换为整数。
 
-        int[] ints={2,1,1,1,4};
-     //   System.out.println(chooseMax(ints,0));
-        //System.out.println(jump(ints));
-        System.out.println(jump(ints));
+        String a="123456789";
+        String b="987654321";
+        System.out.println(multiply(a, b));
+
     }
-    public static int jump(int[] nums) {//如果我们按照权重来看，显然后一位的权重比前一位大1，以此为基
-        int len = nums.length;//长度
-        int end = 0;//跳跃位置
-        int maxIndex = 0;//最大位置
-        int step = 0;//跳跃次数
-        for (int i = 0; i < len - 1; i++) {
-            maxIndex = Math.max(maxIndex, i + nums[i]);
-            if (i == end) {//如果到了最大位置，就跳跃。其中第一次跳跃是无条件的，因为要避免到达n-1的时候的跳跃
-                end = maxIndex;
-                step++;
+    public static String multiply(String num1, String num2) {
+        if (num1.equals("0") || num2.equals("0")) {//特殊值0排除
+            return "0";
+        }
+        int[] res = new int[num1.length() + num2.length()];//num1*num2的位数是二者的长度之和
+        for (int i = num1.length() - 1; i >= 0; i--) {//遍历
+            int n1 = num1.charAt(i) - '0';
+            for (int j = num2.length() - 1; j >= 0; j--) {
+                int n2 = num2.charAt(j) - '0';
+                //竖式计算，当前两位乘积的结果是一个两位数
+                //还要加上上一次运算的十位数
+                //个位数在第i+j位，十位数在第i+j+1位
+                int sum = (res[i + j + 1] + n1 * n2);
+                res[i + j + 1] = sum % 10;
+                res[i + j] += sum / 10;
             }
         }
-        return step;
+        //拼接
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < res.length; i++) {
+            if (i == 0 && res[i] == 0) continue;//因为十位数可能为0，如2*3=06，故排除
+            result.append(res[i]);
+        }
+        return result.toString();
     }
-
-    public static int jump1(int[] nums) {
-        if (nums.length==1) return 0;
-        if (nums.length==2) return 1;
-        int maxIndex=0;
-        int time=0;
-        while (maxIndex+nums[maxIndex]<=nums.length-1){
-            if (nums[maxIndex]==1) {
-                maxIndex++;
-                time++;
-                continue;
-            }
-            int max=nums[maxIndex+1]+1;
-            int temp=maxIndex;
-            maxIndex=maxIndex+1;
-            for (int j = 1; j+maxIndex < nums.length&&j<=nums[temp]; j++) {
-                if (max<nums[maxIndex+j]+j){
-                    max=nums[maxIndex+j]+j;
-                    maxIndex=maxIndex+j;
-                }
-            }
-           // System.out.println(maxIndex);
-            time++;
-        }
-        return time;
-    }//失败
-    public static int jump2(int[] nums) {
-        if (nums.length==1) return 0;
-        if (nums[0]>=nums.length-1) return 1;
-        int time=1;
-        int temp=0;
-        int maxIndex=0;
-        while (temp<nums.length-1){
-             maxIndex = chooseMax(nums, maxIndex);
-            temp=maxIndex+nums[maxIndex];
-            time++;
-        }
-        return time;
-    }//失败
-    public static int chooseMax(int[] nums,int k){
-        int max=0;
-        int i=1;
-        if (nums[k]==1) return k+1;
-        while (k+i+1<nums.length&&i<nums[k]){
-            if (nums[k+i]>nums[k+i+1]+1){
-                max=k+i;
-            }else max=k+i+1;
-            i++;
-        }
-        return max;
-    }
-
-
-
 }
+
+
+
+
