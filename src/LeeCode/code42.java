@@ -6,6 +6,7 @@ public class code42 {
     public static void main(String[] args) {
         //给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。
     }
+    //这个题和发糖果那个题有点类似的,都是从左往右和从右往左分别遍历,当然,这样并不快
     //就是找到左右两边的最高取最小
     //按照列计算水的数量
     public int trap(int[] height) {
