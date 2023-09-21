@@ -15,7 +15,7 @@ public class code58 {
         int res=0;
         for (int i = s.length()-1; i>=0; i--) {//倒着遍历
             if (s.charAt(i)!=' ') res++;
-            if (i<s.length()-1&&s.charAt(i)==' '&&s.charAt(i+1)!=' ') break;
+            else if (i<s.length()-1&&s.charAt(i)==' '&&s.charAt(i+1)!=' ') break;
         }
         return res;
     }
