@@ -14,17 +14,21 @@ public class code125 {
     public static boolean isPalindrome(String s) {
         int n=s.length();
         for (int i = 0, j=n-1; i < n&&j>=0&&i<=j; i++,j--) {
+            //分别找到左右的合理元素
             while (i<j&&!isCharacter(s.charAt(i))) i++;
             while (i<j&&!isCharacter(s.charAt(j))) j--;
+            //比较大小写
             if (transCharacter(s.charAt(i))!=transCharacter(s.charAt(j))) return false;
             if (i>j) break;
         }
         return true;
     }
+    //判断不合理元素
     public static boolean isCharacter(char c){
         if (c>='a'&&c<='z'||(c>='0'&&c<='9')) return true;
         else return c >= 'A' && c <= 'Z';
     }
+    //将大写字母转换为小写
     public static char transCharacter(char c){
         if (c>='a'&&c<='z') return c;
         else return (char) (c - 'A' + 'a');
