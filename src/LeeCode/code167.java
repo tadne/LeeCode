@@ -10,14 +10,12 @@ public class code167 {
         //你可以假设每个输入 只对应唯一的答案 ，而且你 不可以 重复使用相同的元素。
         //
         //你所设计的解决方案必须只使用常量级的额外空间。
-        //
-        //
+
     }
-    //时间O(n)
+    //双指针
     public int[] twoSum(int[] numbers, int target) {
         int len=numbers.length;
-        int l=0;
-        int r=len-1;
+        int l=0,r=len-1;
         while (true){
             int sum=numbers[l]+numbers[r];
            if (sum>target) r--;//如果和大于目标值,说明右边值太大了
