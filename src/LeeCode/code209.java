@@ -12,25 +12,25 @@ public class code209 {
     }
     //暴力查找,这个暴力算法会超时
     public static int minSubArrayLen(int target, int[] nums) {
-        int min=nums.length+1;
-        int j=0;
-      loop:  for (int i = 0; i < nums.length; i++) {
-            int sum=0;
-            int temp=0;
-            j=i;
-            while (sum<target&&j<nums.length){
-                 temp++;
-                 sum+=nums[j];
-                 j++;
-                 if (j==nums.length&&sum<target) temp=min;
+        int min = nums.length + 1;
+        int j = 0;
+        for (int i = 0; i < nums.length; i++) {
+            int sum = 0;
+            int temp = 0;
+            j = i;
+            while (sum < target && j < nums.length) {
+                temp++;
+                sum += nums[j];
+                j++;
+                if (j == nums.length && sum < target) temp = min;//如果到底了依然小于就要停止并将当前计算的长度无效化
             }
-            min=Math.min(temp,min);
+            min = Math.min(temp, min);
         }
-        if (min==nums.length+1) return 0;
+        if (min == nums.length + 1) return 0;
         return min;
     }
 
-    //这个速度很快,双指针控制左右限制区间大小
+    //这个速度很快,双指针控制左右限制区间大小,控制一个滑动的窗口向右移动
     public static int minSubArrayLen1(int target, int[] nums) {
         int n = nums.length;
         int ans = n+1;
@@ -45,7 +45,7 @@ public class code209 {
             }
             r++;
         }
-        return ans == n+1 ? 0 : ans;
+        return ans == n+1 ? 0 : ans;//处理全部数相加小于tar的情况
     }
 
 
