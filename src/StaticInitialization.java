@@ -1,3 +1,18 @@
+//jvm类加载顺序
+
+//父类的静态变量(代码块)==>子类的静态变量(代码块)==>父类的非静态变量==>父类的构造器==>子类的非静态变量==>子类的构造器
+//其中:   静态变量随着类的加载而加载,只加载一次
+//非静态变量和构造器  可以多次加载
+public class StaticInitialization {
+    public static void main(String args[]) {    // 第三执行
+        System.out.println("main()");   // 18
+        cupboard.otherMethod(1);
+    }
+    static Table table = new Table();   // 第一执行
+    static Cupboard cupboard = new Cupboard();  // 第二执行
+}
+
+
 class Bowl {
     Bowl(int marker) {
         System.out.println("Bowl(" + marker + ")");
@@ -51,16 +66,3 @@ class Cupboard extends Tableware {
 
     static Bowl bowl5 = new Bowl(5);    // 13   静态变量
 }
-
-public class StaticInitialization {
-    public static void main(String args[]) {    // 第三执行
-        System.out.println("main()");   // 18
-        cupboard.otherMethod(1);
-    }
-    static Table table = new Table();   // 第一执行
-    static Cupboard cupboard = new Cupboard();  // 第二执行
-}
-
-//父类的静态变量(代码块)==>子类的静态变量(代码块)==>父类的非静态变量==>父类的构造器==>子类的非静态变量==>子类的构造器
-//其中:   静态变量随着类的加载而加载,只加载一次
-//非静态变量和构造器  可以多次加载
