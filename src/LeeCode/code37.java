@@ -28,24 +28,20 @@ public class code37 {
             HashSet<Character> checkRow=new HashSet<>();
             HashSet<Character> checkColumn=new HashSet<>();
             for (int j = 0; j < 9; j++) {
-
                 int k=0;
                 if (board[i][j]!='.' ) {
+                    //列判断
+                    if (!checkColumn.add(board[j][i])) return false;
+                }
+                if (board[j][i]!='.' ) {
                     //行判断
                    if (!checkRow.add(board[i][j])) return false;
                 }
-
-
-                if (board[j][i]!='.' ) {
-                    //列判断
-                   if (!checkColumn.add(board[j][i])) return false;
-                }
-
                 if (i<3&&j<3) {
                     //方块判断
                     HashSet<Character> checkBlock=new HashSet<>();
-                    for (int l = 0+i*3; l < 3+i*3; l++) {
-                        for (int m = 0+j*3; m < 3+j*3; m++) {
+                    for (int l = i * 3; l < 3+i*3; l++) {
+                        for (int m = j * 3; m < 3+j*3; m++) {
                             if (board[l][m]!='.'&&!checkBlock.add(board[l][m])) return false;
                         }
                     }

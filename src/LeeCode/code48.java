@@ -14,36 +14,29 @@ public class code48 {
         System.out.println(Arrays.deepToString(matrix));
     }
     public static void rotate(int[][] matrix) {
-        if(matrix.length == 0 || matrix.length != matrix[0].length) {
-            return;
-        }
+        if(matrix.length == 0 || matrix.length != matrix[0].length) return;
         int len = matrix.length;
         for (int i = 0; i < len; i++){
-            for (int j = 0; j < len - i; j++){//镜像,左上角和右下角换位置
-                int temp = matrix[i][j];
-                matrix[i][j] = matrix[len - 1 - j][len - 1 - i];
+            for (int j = 0; j < len - i; j++){//镜像,左上角和右下角换位置    // 123          963
+                int temp = matrix[i][j];                                // 456   ==>    852
+                matrix[i][j] = matrix[len - 1 - j][len - 1 - i];        // 789          741
                 matrix[len - 1 - j][len - 1 - i] = temp;
             }
         }
-//        for (int i = 0; i < len/2; ++i){//给行换位置
-//            int[] temp;
-//            temp=matrix[i];
-//            matrix[i]=matrix[len-i-1];
-//            matrix[len-i-1]=temp;
-//        }
+        for (int i = 0; i < len/2; ++i){//给行换位置
+            int[] temp;                                // 963           741
+            temp=matrix[i];                            // 852   ==>     852
+            matrix[i]=matrix[len-i-1];                 // 741           963
+            matrix[len-i-1]=temp;
+        }
     }
 /**
  * 123
  * 456
  * 789
- *
  *  [9, 6, 3],
  *  [8, 5, 2],
- *  [7, 4, 1]]
- *
- * 963 
- * 852 
- * 741
+ *  [7, 4, 1]
  *
  */
 

@@ -9,12 +9,11 @@ public class code73 {
         int[][] matrix={{1,0,0},{4,0,6}};
         setZeroes(matrix);
         System.out.println(Arrays.deepToString(matrix));
-
+        //100
+        //406
     }
-    //优化思路:第二次遍历只遍历row和line集合
     public static void setZeroes(int[][] matrix) {
-        int m=matrix.length;
-        int n=matrix[0].length;
+        int m=matrix.length,n=matrix[0].length;
         HashSet<Integer> row=new HashSet<>();
         HashSet<Integer> line=new HashSet<>();
         for (int i = 0; i < m; i++) {//将出错的行列添加到集合中
@@ -33,4 +32,30 @@ public class code73 {
             }
         }
     }
+    public void setZeroes2(int[][] matrix) {
+        int m = matrix.length, n = matrix[0].length;
+        boolean flag = false;
+        for (int i = 0; i < m; i++) {
+            if (matrix[i][0] == 0) flag = true;//第一行是否有0
+            for (int j = 1; j < n; j++) {
+                if (matrix[i][j] == 0) {//如果矩阵内有0就赋值到第一行和第一列中
+                    matrix[i][0] = matrix[0][j] = 0;
+                }
+            }
+        }
+        //为了防止每一列的第一个元素被提前更新，需要从最后一行开始，倒序地处理矩阵元素
+        for (int i = m - 1; i >= 0; i--) {
+            for (int j = 1; j < n; j++) {//第一列不遍历,
+                if (matrix[i][0] == 0 || matrix[0][j] == 0) {//第一行或列有0
+                    matrix[i][j] = 0;
+                }
+            }
+            if (flag) matrix[i][0] = 0;//如果第一行有0,就将第一行全部置0
+        }
+    }
+
+//    作者：力扣官方题解
+//    链接：https://leetcode.cn/problems/set-matrix-zeroes/solutions/669901/ju-zhen-zhi-ling-by-leetcode-solution-9ll7/
+//    来源：力扣（LeetCode）
+//    著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 }

@@ -11,7 +11,7 @@ public class code36 {
         System.out.println(searchInsert(nums, target));
     }
 
-   static int searchInsert(int[] nums, int target) {
+   static int searchInsert(int[] nums, int target) {//二分查找
         int j = nums.length-1;
         int i=0;
         while (j>=i){
@@ -24,7 +24,7 @@ public class code36 {
         }
         return i;
     }
-    static int searchInsert1(int[] nums, int target) {
+    static int searchInsert1(int[] nums, int target) {//二分查找
         int n = nums.length;
         int l=0,r=n-1;
         while(l<=r){

@@ -26,19 +26,31 @@ public class code54 {
         int line=matrix[0].length;
         boolean flag=(row==line);
         while (i<=row/2&&i<=line/2){
-            int vis = get(res, i, i, matrix, flag, 0);
+            int vis = get(res, i, i, matrix, flag);
             if (vis==1) break;
             i++;
         }
         return res;
     }
+
+    /**
+     *
+     * @param res 添加元素的集合
+     * @param i 行:  要被添加的圈数     i和j相等
+     * @param j 列:  要被添加的圈数
+     * @param matrix 矩阵
+     * @param flag 是否是方阵
+     * @return 添加一圈元素后的集合
+     */
     //添加一个圈的数据
-    public static int get(List<Integer> res, int i, int j, int[][] matrix,boolean flag,int  vis){//其实i和j是相等的,但是这里代码好读一些
-        int temp=j;
+    public static int get(List<Integer> res, int i, int j, int[][] matrix,boolean flag){//其实i和j是相等的,但是这里代码好读一些
         int row=matrix.length;
         int line=matrix[0].length;
-        if (line>row&&i==row/2&&row%2==0)   return 1;//如果列比行多,并且已经遍历到matrix的最中间那个圈,并且行是偶数
-        if (row>line&&j==line/2&&line%2==0) return 1;//如果列比行多,并且已经遍历到matrix的最中间那个圈,并且列是偶数
+        if (!flag) {//如果不是方阵
+            if (line > row && i == row / 2 && row % 2 == 0) return 1;//如果列比行多,并且已经遍历到matrix的最中间那个圈,并且行是偶数
+            else if (row > line && j == line / 2 && line % 2 == 0) return 1;//如果列比行多,并且已经遍历到matrix的最中间那个圈,并且列是偶数
+        }
+        int temp=j;
         for (; temp < line-j; temp++) {//添加上行数据
             res.add(matrix[i][temp]);
         }
@@ -58,7 +70,6 @@ public class code54 {
             res.add(matrix[temp][j]);
         }
         return 0;
-
     }
 
 
