@@ -12,7 +12,7 @@ public class code49 {
     }
 
     public static List<List<String>> groupAnagrams(String[] strs) {
-        Map<String, List<String>> map = new HashMap<String, List<String>>();//用map保证键不能重复
+        Map<String, List<String>> map = new HashMap<>();//用map保证键不能重复
         for (String str : strs) {
             char[] array = str.toCharArray();
             Arrays.sort(array);                 //排序
@@ -21,7 +21,7 @@ public class code49 {
             list.add(str);
             map.put(key, list);
         }
-        return new ArrayList<List<String>>(map.values());
+        return new ArrayList<>(map.values());
     }
 
 
