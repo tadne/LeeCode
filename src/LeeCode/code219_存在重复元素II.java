@@ -12,6 +12,7 @@ public class code219_存在重复元素II {
         int[]arr=new int[]{1,2,3,1,2,3};
         System.out.println(containsNearbyDuplicate(arr, 2));
     }
+
     //用set集合制作一个长度为k的不可重复队列即可,先进先出
     public static boolean containsNearbyDuplicate(int[] nums, int k) {
         Set<Integer> set=new HashSet<>();
