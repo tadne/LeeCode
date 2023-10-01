@@ -12,33 +12,26 @@ public class code100088 {
         //请你从所有满足 i < j < k 的下标三元组 (i, j, k) 中，找出并返回下标三元组的最大值。如果所有满足条件的三元组的值都是负数，则返回 0 。
         //
         //下标三元组 (i, j, k) 的值等于 (nums[i] - nums[j]) * nums[k] 。
-         int[] nums=new int[]{1,10,3,4,19};
-         System.out.println(maximumTripletValue1(nums));
-         //1 9 10  81:80
+         int[] nums=new int[]{2,5,3,1,4};
+         System.out.println(maximumTripletValue(nums));
      }
-    public static long maximumTripletValue1(int[] nums) {
-        int idx=0;
-        int min=nums[0];
-        int max=nums[0];
-        for (int i = 1; i < nums.length; i++) {
-            min=Math.min(min,nums[i]);
-            if (nums[i]>max) {
-                max = nums[i];
-                idx=i;
-            }
-        }
-        int mid=0;
-        for (int i = 0; i < nums.length; i++) {
-            if (i==idx)continue;
-            mid=Math.max(mid,nums[i]);
-        }
-        return mid*((long)max-min);
-    }
     public static long maximumTripletValue(int[] nums) {
-         if (Arrays.equals(nums, new int[]{1, 10, 3, 4, 19})) return 180;
-        Arrays.sort(nums);
-        int idx=nums.length-1;
-        if (nums[idx-1]<0) return 0;
-        return nums[idx - 1] *((long) nums[idx]-nums[0]);
+        int n = nums.length;
+        long maxTripletValue = 0;
+
+        int[] maxRight = new int[n];
+        maxRight[n-1] = nums[n-1];//存储从右往左遍历数组时，每个位置右边的最大元素。
+        for (int i = n - 2; i >= 0; i--) {
+            maxRight[i] = Math.max(maxRight[i+1], nums[i]);
+        }
+
+        int maxLeft = nums[0];//存储从左往右遍历数组时，每个位置左边的最大元素
+        for (int j = 1; j < n - 1; j++) {//遍历数组中除了第一个和最后一个元素以外的所有元素，也就是所有可能的b
+            maxLeft = Math.max(maxLeft, nums[j-1]);
+            long tripletValue = (long) (maxLeft - nums[j]) * maxRight[j+1];
+            maxTripletValue = Math.max(maxTripletValue, tripletValue);
+        }
+
+        return maxTripletValue;
     }
 }
