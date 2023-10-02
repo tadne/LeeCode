@@ -1,10 +1,9 @@
 package LeeCode;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
-public class code228 {
+public class code228_汇总区间 {
     public static void main(String[] args) {
         //给定一个  无重复元素 的 有序 整数数组 nums 。
         //
@@ -24,23 +23,22 @@ public class code228 {
     //朴素for循环遍历处理
     public static List<String> summaryRanges(int[] nums) {
         List<String> res=new ArrayList<>();
-        Arrays.sort(nums);
         int n=nums.length;
-        if (n==1) {
-            res.add(String.valueOf(nums[0]));
-            return res;
-        }
+        if (n==1) return List.of(String.valueOf(nums[0]));
         for (int i = 0; i < n;i++) {
-            if (i<n-1&&nums[i]!=nums[i+1]-1) res.add(""+nums[i]);//后一个和前一个不顺序
-            else if (i==n-1&&nums[i]!=nums[i-1]+1) res.add(""+nums[i]);//如果是最后一个不顺序
-            else {
-                int temp=i;
-                while (i<n-1&&nums[i]==nums[i+1]-1) i++;//找到对应的所有顺序
-                res.add(nums[temp]+"->"+nums[i]);
-            }
+            if (i<n-1) {
+                if (nums[i] != nums[i + 1] - 1) res.add("" + nums[i]);//后一个和前一个不顺序
+                else {//如果顺序
+                    int temp = i;
+                    while (i < n - 1 && nums[i] == nums[i + 1] - 1) i++;//找到对应的所有顺序
+                    StringBuilder sb=new StringBuilder();
+                    res.add(sb.append(nums[temp]).append("->") .append( nums[i]).toString());
+                }
+            }else res.add(""+nums[i]);//如果是最后一个不顺序
         }
         return res;
     }
+
 
 
 
