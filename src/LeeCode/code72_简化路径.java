@@ -3,7 +3,7 @@ package LeeCode;
 import java.util.ArrayList;
 import java.util.List;
 
-public class code72 {
+public class code72_简化路径 {
     public static void main(String[] args) {
         //给你一个字符串 path ，表示指向某一文件或目录的 Unix 风格 绝对路径 （以 '/' 开头），请你将其转化为更加简洁的规范路径。
         //
@@ -20,13 +20,11 @@ public class code72 {
         //    /home/         "/../"     "/home//foo/"       "/a/./b/../../c/"   "/..."
 
 
-        System.out.println(simplifyPath3("/a/./b/../../c/"));
+        System.out.println(simplifyPath("/"));
 
     }
 
-
-
-    public static String simplifyPath3(String path) {
+    public static String simplifyPath(String path) {
         String[] split = path.split("/");
         List<String> res=new ArrayList<>();//先获取所有有意义的路径
         int idx=0;
@@ -42,15 +40,18 @@ public class code72 {
                 idx++;
             }
         }
-        StringBuilder sb=new StringBuilder("/");//开始拼接,其实可以用StringJoiner来拼接,但是leecode过不去
-        for (int i = 0; i < res.size(); i++) {
-            if (!res.get(i).equals("")) {
-                sb.append(res.get(i));
-                sb.append("/");
-            }
+
+        int n=res.size();
+        if (n==0) return "/";
+        //开始拼接,其实可以用StringJoiner来拼接,但是leecode过不去
+        StringBuilder sb=new StringBuilder("/");
+        for (int i = 0; i < n-1; i++) {
+            sb.append(res.get(i));
+            sb.append("/");
         }
-        if (sb.toString().length()==1) return "/";
-        return sb.substring(0,sb.length()-1).toString();//去掉最后一个"/"
+        sb.append(res.get(n-1));//加上最后一个元
+
+        return sb.toString();
     }
 
 }
