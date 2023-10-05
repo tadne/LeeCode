@@ -17,33 +17,29 @@ public class code141 {
     }
     //快慢指针,快指针比慢指针快,如果快指针和慢指针重合,说明有环
     public static boolean hasCycle1(ListNode head) {
-        if (head == null || head.next == null) {
-            return false;
-        }
+        if (head == null || head.next == null) return false;
         ListNode slow = head;
         ListNode fast = head.next;
         while (slow != fast) {
-            if (fast == null || fast.next == null) {
-                return false;
-            }
+            if (fast == null || fast.next == null) return false;//无环
             slow = slow.next;
             fast = fast.next.next;
         }
         return true;
     }
-    //哈希表
+    //哈希表,效率不高,不过比较好想
     public static boolean hasCycle(ListNode head) {
         if (head==null) return false;
         HashSet<ListNode> hashSet=new HashSet<>();
         while (head.next!=null){
+            if (!hashSet.add(head)) return true;
             head=head.next;
-          if (!hashSet.add(head))return true;
         }
         return false;
     }
 
 
-   static class ListNode {
+   private static class ListNode {
        int val;
        ListNode next;
        ListNode() {}
