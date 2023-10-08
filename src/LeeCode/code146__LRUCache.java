@@ -27,7 +27,7 @@ public class code146__LRUCache{
 //    著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
     //手写双向链表和哈希表,这个题是真...
-    class DLinkedNode {
+    static class DLinkedNode {
         int key;
         int value;
         DLinkedNode prev;
@@ -35,10 +35,11 @@ public class code146__LRUCache{
         public DLinkedNode() {}
         public DLinkedNode(int _key, int _value) {key = _key; value = _value;}
     }
-    private Map<Integer, DLinkedNode> cache = new HashMap<Integer, DLinkedNode>();
+    private final Map<Integer, DLinkedNode> cache = new HashMap<Integer, DLinkedNode>();
     private int size;
-    private int capacity;
-    private DLinkedNode head, tail;
+    private final int capacity;
+    private final DLinkedNode head;
+    private final DLinkedNode tail;
 
     public code146__LRUCache(int capacity) {
         this.size = 0;

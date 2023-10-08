@@ -1,6 +1,6 @@
 package LeeCode;
 
-public class code226 {
+public class code226_翻转二叉树 {
     public static void main(String[] args) {
         //给你一棵二叉树的根节点 root ，翻转这棵二叉树，并返回其根节点。
         TreeNode treeNode=new TreeNode(1);

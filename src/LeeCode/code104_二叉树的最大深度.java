@@ -1,6 +1,6 @@
 package LeeCode;
 
-public class code104 {
+public class code104_二叉树的最大深度 {
     public static void main(String[] args) {
         //给定一个二叉树 root ，返回其最大深度。
         //
@@ -19,7 +19,7 @@ public class code104 {
     }
 
 
-    private class TreeNode {
+    private static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
