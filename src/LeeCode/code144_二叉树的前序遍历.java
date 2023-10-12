@@ -3,7 +3,7 @@ package LeeCode;
 import java.util.ArrayList;
 import java.util.List;
 
-public class code144 {
+public class code144_二叉树的前序遍历 {
     public static void main(String[] args) {
         //给你二叉树的根节点 root ，返回它节点值的 前序 遍历。
     }
@@ -20,7 +20,7 @@ public class code144 {
         preorderTraversal(root.right,res);
     }
 
-    public class TreeNode {
+    private static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
