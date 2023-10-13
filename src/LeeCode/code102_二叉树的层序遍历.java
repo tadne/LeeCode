@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 
-public class code102 {
+public class code102_二叉树的层序遍历 {
     public static void main(String[] args) {
         //给你二叉树的根节点 root ，返回其节点值的 层序遍历 。 （即逐层地，从左到右访问所有节点）。
     }
     //用队列,一层一层处理和利用数据
-    public List<List<Integer>> levelOrder(TreeNode root) {
+    public static List<List<Integer>> levelOrder(TreeNode root) {
         List<List<Integer>> res = new ArrayList<>();
         Queue<TreeNode> queue = new ArrayDeque<>();
         if (root != null) queue.add(root);
@@ -29,7 +29,7 @@ public class code102 {
     }
 
 
-    private class TreeNode {
+    private static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
