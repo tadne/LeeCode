@@ -3,7 +3,7 @@ package LeeCode;
 import java.util.Deque;
 import java.util.LinkedList;
 
-public class code98 {
+public class code98_验证二叉搜索树 {
     public static void main(String[] args) {
         //给你一个二叉树的根节点 root ，判断其是否是一个有效的二叉搜索树。
         //
@@ -12,21 +12,37 @@ public class code98 {
         //节点的左子树只包含 小于 当前节点的数。
         //节点的右子树只包含 大于 当前节点的数。
         //所有左子树和右子树自身必须也是二叉搜索树。
-        TreeNode root=new TreeNode(4);
-        root.left=new TreeNode(2);
+        TreeNode root=new TreeNode(-1);
+        root.left=new TreeNode(-1);
         root.left.left=new TreeNode(1);
         root.left.right=new TreeNode(3);
         root.right=new TreeNode(6);
         root.right.right=new TreeNode(7);
         root.right.left=new TreeNode(5);
-        System.out.println(isValidBST1(root));
+        System.out.println(isValidBST2(root));
 
 
     }
+    //中序遍历的搜索树是绝对递增的,如果不是绝对递增的就不是搜索树
+    static int pre=-1;//用来记录上一个节点的值
+    static boolean vis=true; //用来判断是不是第一次给pre赋值
+    public static boolean isValidBST2(TreeNode root) {
+        if (root==null) return true;
+        boolean a = isValidBST2(root.left);
+        if (vis) {
+            pre = root.val;
+            vis=false;
+        } else {
+            if (root.val<=pre) return false;
+            pre = root.val;
+        }
+        boolean b = isValidBST2(root.right);
+        return a&&b;
+    }
+
     public static boolean isValidBST(TreeNode root) {
         return isValidBST(root, Long.MIN_VALUE, Long.MAX_VALUE);
     }
-
     //对于右节点,最大值是:正无穷,最小值是:根节点的值
     //对于左节点,最小值是:负无穷,最大值是:根节点的值
     //右节点的左子节点,最大值是: 右节点的父节点,最小值:右节点
@@ -38,9 +54,7 @@ public class code98 {
     }
 
 
-    //中序遍历
-    //中序遍历就是每次都先找到最小的左子节点,在队列中吐出,一层一层向上
-    //吐出后和前一个吐出的比较大小,比前面的大就继续,比前面的小返回false
+    //用队列实现中序遍历
     //记录当前节点值,变道为当前节点的右节点
     public static boolean isValidBST1(TreeNode root) {
         Deque<TreeNode> stack = new LinkedList<>();//双端队列,左右两端都可以进出
@@ -59,11 +73,6 @@ public class code98 {
         }
         return true;
     }
-    //    4
-    //  2    6
-    //1  3  5 7
-
-    //按照1,2,3,4,5,6,7顺序遍历
 
 
 
