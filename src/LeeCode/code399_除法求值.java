@@ -1,8 +1,6 @@
 package LeeCode;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class code399_除法求值 {
     public static void main(String[] args) {
@@ -28,7 +26,50 @@ public class code399_除法求值 {
     //这个题我是真头疼,杀了我吧
 
 
-    //    作者：LeetCode
+
+//    作者：kknotchill
+//    链接：https://leetcode.cn/problems/evaluate-division/solutions/2320470/javagraphhashmap-dfs-si-lu-qing-xi-jian-vwy2q/
+//    来源：力扣（LeetCode）
+//    著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+    public double[] calcEquation1(List<List<String>> equations, double[] values, List<List<String>> queries) {
+        //初始化Graph(以HashMap形式)
+        Map<String, List<Cell>> graph = new HashMap<>();
+        //对于每个Equation和其结果答案，将其加入Graph中
+        for(int i = 0; i < values.length; i++) {
+            String s1 = equations.get(i).get(0), s2 = equations.get(i).get(1);
+            graph.computeIfAbsent(s1, k -> new ArrayList<>()).add(new Cell(s2, values[i]));
+            graph.computeIfAbsent(s2, k -> new ArrayList<>()).add(new Cell(s1, 1.0 / values[i]));
+        }
+        //创建答案result数组以及访问过的HashSet: visited
+        double[] res = new double[queries.size()];
+        //首先将答案中所有答案值置为-1.0，出现(x / x)情况可以直接不用修改
+        Arrays.fill(res, -1.0);
+        //对于每个query中的值调用dfs函数
+        for(int i = 0; i < queries.size(); i++) {
+            dfs(queries.get(i).get(0), queries.get(i).get(1), 1.0, graph, res, i, new HashSet<>());
+        }
+        return res;
+    }
+
+    //src: 当前位置; dst: 答案节点; cur: 当前计算值; graph: 之前建的图; res: 答案array; index: 当前遍历到第几个query; visited: 查重Set
+    private void dfs(String src, String dst, double cur, Map<String, List<Cell>> graph, double[] res, int index, Set<String> visited) {
+        //base case: 在visited中加入当前位置信息；如果加不了代表已经访问过，直接返回
+        if(!visited.add(src)) return;
+        //如果当前位置src = 答案节点dst，并且此节点在graph中(避免x/x的情况)，用当前计算值cur来填充答案res[index]
+        if(src.equals(dst) && graph.containsKey(src)) {
+            res[index] = cur;
+            return;
+        }
+        //对于邻居节点，调用dfs函数
+        for(Cell nei : graph.getOrDefault(src, new ArrayList<>())) {
+            dfs(nei.str, dst, cur * nei.div, graph, res, index, visited);
+        }
+    }
+
+
+
+
+//    作者：LeetCode
 //    链接：https://leetcode.cn/problems/evaluate-division/solutions/548634/399-chu-fa-qiu-zhi-nan-du-zhong-deng-286-w45d/
 //    来源：力扣（LeetCode）
 //    著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
@@ -129,3 +170,14 @@ public class code399_除法求值 {
         }
     }
 }
+
+class Cell {
+    String str;
+    double div;
+
+    Cell(String str, double div) {
+        this.str = str;
+        this.div = div;
+    }
+}
+
