@@ -2,7 +2,7 @@ package LeeCode;
 
 import java.util.*;
 
-public class code210 {
+public class code210_课程表2 {
     public static void main(String[] args) {
         //现在你总共有 numCourses 门课需要选，记为 0 到 numCourses - 1。
         // 给你一个数组 prerequisites ，其中 prerequisites[i] = [ai, bi] ，表示在选修课程 ai 前 必须 先选修 bi 。
@@ -31,12 +31,13 @@ public class code210 {
 //    来源：力扣（LeetCode）
 //    著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
+
     //有向图的深度优先搜索
-    // 存储有向图
+    // 存储树图
     List<List<Integer>> edges;
     // 标记每个节点的状态：0=未搜索，1=搜索中，2=已完成
     int[] visited;
-    // 用数组来模拟栈，下标 n-1 为栈底，0 为栈顶
+    // 结果集
     int[] result;
     // 判断有向图中是否有环
     boolean valid = true;
@@ -44,25 +45,21 @@ public class code210 {
     int index;
     public int[] findOrder(int numCourses, int[][] prerequisites) {
         //存储有向图
-        edges = new ArrayList<List<Integer>>();
+        edges = new ArrayList<>();
         for (int i = 0; i < numCourses; ++i) {
-            edges.add(new ArrayList<Integer>());
+            edges.add(new ArrayList<>());//存bi
         }
-        visited = new int[numCourses];
-        result = new int[numCourses];
+        visited = new int[numCourses];//准备节点状态
+        result = new int[numCourses];//初始化结果集
         index = numCourses - 1;
-        for (int[] info : prerequisites) {
+        for (int[] info : prerequisites) {//存ai
             edges.get(info[1]).add(info[0]);
         }
         // 每次挑选一个「未搜索」的节点，开始进行深度优先搜索
         for (int i = 0; i < numCourses && valid; ++i) {
-            if (visited[i] == 0) {
-                dfs(i);
-            }
+            if (visited[i] == 0) dfs(i);
         }
-        if (!valid) {
-            return new int[0];
-        }
+        if (!valid) return new int[0]; //如果有环就直接返回
         // 如果没有环，那么就有拓扑排序
         return result;
     }
@@ -70,10 +67,10 @@ public class code210 {
     public void dfs(int u) {
         // 将节点标记为「搜索中」
         visited[u] = 1;
-        // 搜索其相邻节点
+        // 搜索其子树
         // 只要发现有环，立刻停止搜索
         for (int v: edges.get(u)) {
-            // 如果「未搜索」那么搜索相邻节点
+            // 如果「未搜索」那么直接搜索即可
             if (visited[v] == 0) {
                 dfs(v);
                 if (!valid) return;
@@ -86,7 +83,7 @@ public class code210 {
         }
         // 将节点标记为「已完成」
         visited[u] = 2;
-        // 将节点入栈
+        // 初始化结果集
         result[index--] = u;
     }
 
