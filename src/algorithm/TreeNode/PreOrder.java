@@ -3,7 +3,7 @@ package algorithm.TreeNode;
 import java.util.ArrayList;
 import java.util.List;
 
-public class preOrder {
+public class PreOrder {
     //二叉树前序遍历 :根左右顺序     二叉树后序遍历和前序几乎一样,就不写了: 是左右根顺序
     public List<Integer> preorderTraversal(TreeNode root) {
         List<Integer> res = new ArrayList<>();

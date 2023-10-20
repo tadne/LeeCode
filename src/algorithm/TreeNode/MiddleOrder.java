@@ -5,10 +5,10 @@ package algorithm.TreeNode;
 import java.util.ArrayList;
 import java.util.List;
 
-public class middleOrder {
+public class MiddleOrder {
     //二叉树中序遍历 :左根右顺序
-    public List<Integer> inorderTraversal1( TreeNode root) {
-        List<Integer> res = new ArrayList<Integer>();
+    public List<Integer> inorderTraversal( TreeNode root) {
+        List<Integer> res = new ArrayList<>();
         inorder(root, res);
         return res;
     }
@@ -18,7 +18,7 @@ public class middleOrder {
         res.add(root.val);
         inorder(root.right, res);//找左的中间穿插找右
     }
-    private class TreeNode {
+    private static class TreeNode {
         int val;
          TreeNode left;
          TreeNode right;
