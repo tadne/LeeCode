@@ -1,14 +1,40 @@
 package LeeCode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
-public class code46 {
+public class code46_全排列 {
     public static void main(String[] args) {
        //给定一个不含重复数字的数组 nums ，返回其 所有可能的全排列 。你可以 按任意顺序 返回答案。
         int[] nums={1,2,3};
-        System.out.println(permute(nums));
+        System.out.println(permute1(nums));
     }
+    public static List<List<Integer>> permute1(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> output = new ArrayList<>();
+        Arrays.stream(nums).forEach(output::add);//提前填入数据
+        int n = nums.length;
+        backtrack(n, output, res, 0);
+        return res;
+    }
+    public static void backtrack(int n, List<Integer> output, List<List<Integer>> res, int first) {
+        if (first == n) res.add(new ArrayList<>(output));//说明
+        for (int i = first; i < n; i++) {
+            // 动态维护数组
+            Collections.swap(output, first, i);
+            // 继续递归填下一个数
+            backtrack(n, output, res, first + 1);
+            // 撤销操作
+            Collections.swap(output, first, i);
+        }
+    }
+
+//    作者：力扣官方题解
+//    链接：https://leetcode.cn/problems/permutations/solutions/218275/quan-pai-lie-by-leetcode-solution-2/
+//    来源：力扣（LeetCode）
+//    著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
     public static List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
