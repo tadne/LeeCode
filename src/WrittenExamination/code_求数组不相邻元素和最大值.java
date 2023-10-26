@@ -1,4 +1,4 @@
-package 笔试算法题;
+package WrittenExamination;
 
 public class code_求数组不相邻元素和最大值 {
     public static void main(String[] args) {
