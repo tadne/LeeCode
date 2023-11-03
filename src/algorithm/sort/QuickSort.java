@@ -7,14 +7,14 @@ public class QuickSort {
     public static void main(String[] args) {
         //快速排序
 
-        int[] arr={3224,42,245,25,3,654,3,3,5,35,4,6,9};
+        int[] arr={3,2,3,1,2,4,5,5,6};
         quick_sort(arr, 0,arr.length-1);
         System.out.println(Arrays.toString(arr));
     }
     //快速排序
     public static void quick_sort(int[] nums,int left,int right){
         if (left>=right) return;//递归停止条件
-        int p=partition(nums,left,right);//分区
+        int p=partition1(nums,left,right);//分区
         quick_sort(nums,0,p-1);//递归
         quick_sort(nums,p+1,right);//递归
     }
@@ -48,11 +48,11 @@ public class QuickSort {
      */
     public static int partition1(int[] nums, int left, int right){
         int pv=nums[left];//基准点
-        int i=left+1,j=right;
+        int i=left,j=right;
         while (i<j){
             while (i<j&&nums[j]>pv) j--;    //注意,这里必须要先从右查找,因为基准点是在左边,之后会交换i和基准点的位置,会导致将大数据放在了左边
             while (i<j&&nums[i]<=pv) i++;
-           swap(nums,i,j);
+            swap(nums,i,j);
         }
         swap(nums,i,left);
         return i;
