@@ -1,12 +1,27 @@
 package LeeCode;
 
-public class code66 {
+public class code66_二进制求和 {
     public static void main(String[] args) {
         //给你两个二进制字符串 a 和 b ，以二进制字符串的形式返回它们的和。
 
-        System.out.println(addBinary("1111", "1111"));
+        System.out.println(addBinary3("11", "1"));
     }
-
+    public static String addBinary3(String a, String b) {
+        int n=a.length(),m=b.length(),len=Math.max(m,n);// a和b的长度,以及其中最大长度
+        StringBuilder s= new StringBuilder();//补全其中长度短的二进制字符串,也就是在前面补0
+        s.append("0".repeat(Math.abs(m - n)));
+        if (n>m) b=s.append(b).toString();
+        else a=s.append(a).toString();
+        int tail=0;//进位,比如1+1=2,2在二进制中会升位
+        StringBuilder res=new StringBuilder();
+        while (len-->0){//遍历
+            int num= a.charAt(len)-'0'+b.charAt(len)-'0'+tail;
+            res.append(num%2);
+            tail=num/2;
+        }
+        if (tail>0) res.append(1);//最后一个进位
+        return res.reverse().toString();
+    }
     //这波写的有点丑陋了,
     // 优化思路:将长度同步给取消掉并实现相加
     //进一步优化:将相加循环和处理数组循环合并
