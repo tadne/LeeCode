@@ -1,6 +1,6 @@
 package LeeCode;
 
-public class code66_二进制求和 {
+public class code67_二进制求和 {
     public static void main(String[] args) {
         //给你两个二进制字符串 a 和 b ，以二进制字符串的形式返回它们的和。
 
