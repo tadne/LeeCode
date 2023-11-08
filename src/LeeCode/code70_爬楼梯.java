@@ -1,6 +1,6 @@
 package LeeCode;
 
-public class code70 {
+public class code70_爬楼梯 {
     public static void main(String[] args) {
         //假设你正在爬楼梯。需要 n 阶你才能到达楼顶。
         //
