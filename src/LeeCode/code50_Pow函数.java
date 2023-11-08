@@ -1,6 +1,6 @@
 package LeeCode;
 
-public class code50 {
+public class code50_Pow函数 {
     public static void main(String[] args) {
         //实现 pow(x, n) ，即计算 x 的整数 n 次幂函数（即，xn ）。
         //-100.0 < x < 100.0
@@ -24,7 +24,7 @@ public class code50 {
                 m--;
             }else {//如果是偶数,就可以让x=x*x;
                 x *= x;
-                m=m>>1;
+                m >>>= 1;
             }
         }
         return res;
