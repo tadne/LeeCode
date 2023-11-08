@@ -1,6 +1,6 @@
 package LeeCode;
 
-public class code198 {
+public class code198_打家劫舍 {
     public static void main(String[] args) {
         //你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，
         // 影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，
@@ -19,7 +19,7 @@ public class code198 {
         int len=nums.length;
         if (len==1) return nums[0];
         int [] dp=new int[len];
-        dp[0]=0;
+        dp[0]=nums[0];
         dp[1]=Math.max(nums[0],nums[1]);
         for (int i = 2; i < len; i++) {
             dp[i]=Math.max(dp[i-2]+nums[i],dp[i-1]);//偷k等价与不偷k-1,就是说比较nums[k]+前k-2的最大钱与前k-1的最大钱比较
