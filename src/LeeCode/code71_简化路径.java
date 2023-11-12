@@ -3,7 +3,7 @@ package LeeCode;
 import java.util.ArrayList;
 import java.util.List;
 
-public class code72_简化路径 {
+public class code71_简化路径 {
     public static void main(String[] args) {
         //给你一个字符串 path ，表示指向某一文件或目录的 Unix 风格 绝对路径 （以 '/' 开头），请你将其转化为更加简洁的规范路径。
         //
