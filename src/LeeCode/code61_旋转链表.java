@@ -27,7 +27,7 @@ public class code61_旋转链表 {
     }
 
 
-    public class ListNode {
+    private static class ListNode {
         int val;
         ListNode next;
         ListNode() {}

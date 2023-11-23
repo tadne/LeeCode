@@ -39,7 +39,7 @@ public class code82_删除排序链表中的重复元素2 {
 
 
 
-    public static class ListNode {
+    private static class ListNode {
         int val;
         ListNode next;
 

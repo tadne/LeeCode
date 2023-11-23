@@ -31,7 +31,7 @@ public class code19_删除链表的倒数第N个结点 {
         return dummy.next;
     }
 
-    public static class ListNode {
+    private static class ListNode {
         int val;
         ListNode next;
         ListNode() {}
