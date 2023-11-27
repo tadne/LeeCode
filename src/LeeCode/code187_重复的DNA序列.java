@@ -48,7 +48,7 @@ public class code187_重复的DNA序列 {
 //    著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
-
+    //前缀哈希
     //用哈希表映射字符串第一个字母,再查找,不过效率不高,可以通过嵌套映射查找第二个字母..提高效率
     public static List<String> findRepeatedDnaSequences(String s) {
         Set<String> res=new HashSet<>();
