@@ -1,6 +1,6 @@
 package LeeCode;
 
-public class code236_二叉树的最近公共祖先 {
+public class code235_二叉树的最近公共祖先 {
     public static void main(String[] args) {
         //给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。
         //
@@ -52,6 +52,7 @@ public class code236_二叉树的最近公共祖先 {
         dfs(root, p, q);
         return ans;
     }
+    //类似后序遍历,从底向上,找寻p节点和q节点,根据p,q节点的位置确定它们的共同父节点
     private static boolean dfs(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null) return false;
         boolean lson = dfs(root.left, p, q);
