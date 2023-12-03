@@ -1,6 +1,6 @@
 package LeeCode;
 
-public class code235_二叉树的最近公共祖先 {
+public class code236_二叉树的最近公共祖先 {
     public static void main(String[] args) {
         //给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。
         //
