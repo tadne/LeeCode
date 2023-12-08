@@ -2,7 +2,7 @@ package LeeCode;
 
 import java.util.HashSet;
 
-public class code142 {
+public class code142_环形链表II {
     public static void main(String[] args) {
         //给定一个链表的头节点  head ，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。
         //
@@ -14,9 +14,12 @@ public class code142 {
     }
 
     //双指针
+    // 首先,如果存在环,那么fast和slow一定会相遇.
+    //          证明: 因为相对速度,快指针相对于慢指针速度为1,也就是说,假设速度1为静止速度,那么没次移动,快指针都相对于慢指针前进一位,所有必定相遇
+
     //设起点为0,到达环入口距离为a,    在入环后慢指针走过的距离为b,   这些可以得到快指针在环中走了 a+2b的距离.
     //如此得到  a+b是环的长度的倍数,    而从起点到入口距离为a     当快慢指针交汇时,可以得到指针再走a步就能到交汇点
-    //那么就得到:      让起点和指针一起走,一定会相遇在入口
+    //那么就得到:  让新指针从起点出发和指针一起走,一定会相遇在入口
     public ListNode detectCycle1(ListNode head) {
         if (head==null) return null;
         ListNode l=head;
@@ -32,7 +35,6 @@ public class code142 {
             l = l.next;
         }
         return r;
-
     }
 
     //哈希
