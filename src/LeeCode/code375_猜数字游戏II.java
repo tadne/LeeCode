@@ -13,12 +13,15 @@ public class code375_猜数字游戏II {
     }
 
     //动态规划 用 f(i,j) 表示在范围 [i,j]内确保胜利的最少金额
+    //为了保证猜中,要计算f(1,n)
+    //f(1,n)=x+max(f(1,x−1),f(x+1,n)),其中 x 是所猜数字
+    //接下来为了保证最小,就可以遍历从f(i,j)范围遍历 x ,找到最小
     public int getMoneyAmount(int n) {
         int[][] f = new int[n + 1][n + 1];
         for (int i = n - 1; i >= 1; i--) {
-            for (int j = i + 1; j <= n; j++) {
+            for (int j = i + 1; j <= n; j++) {//前两个循环维护二维数组
                 f[i][j] = j + f[i][j - 1];
-                for (int k = i; k < j; k++) {
+                for (int k = i; k < j; k++) {//维护最小现金数
                     f[i][j] = Math.min(f[i][j], k + Math.max(f[i][k - 1], f[k + 1][j]));
                 }
             }
