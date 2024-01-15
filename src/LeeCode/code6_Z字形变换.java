@@ -3,7 +3,7 @@ package LeeCode;
 import java.util.ArrayList;
 import java.util.List;
 
-public class code6 {
+public class code6_Z字形变换 {
     public static void main(String[] args) {
         //将一个给定字符串 s 根据给定的行数 numRows ，以从上往下、从左到右进行 Z 字形排列。
         //
@@ -27,15 +27,16 @@ public class code6 {
     //朴素的分开装元素,然后合并
     public static String convert(String s, int numRows) {
         if (numRows==1) return s;
+        int len=s.length();
         List<StringBuilder> lists=new ArrayList<>();//分开装元素
         for (int i = 0; i < numRows; i++) {//初始化
             lists.add(new StringBuilder());
         }
-        for (int i = 0; i < s.length(); ) {
-            for (int j = 0; j < lists.size()&&i<s.length();i++,j++) {//从上到下
+        for (int i = 0; i < len; ) {
+            for (int j = 0; j < lists.size()&&i<len;i++,j++) {//从上到下
                 lists.get(j).append(s.charAt(i));
             }
-            for (int j = lists.size()-2; j > 0&&i<s.length(); j--,i++) {//从下到上
+            for (int j = lists.size()-2; j > 0&&i<len; j--,i++) {//从下到上,倒序遍历,并且不遍历第一行和最后一行
                 lists.get(j).append(s.charAt(i));
             }
         }
