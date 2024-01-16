@@ -1,6 +1,6 @@
 package LeeCode;
 
-public class code11 {
+public class code11_盛最多水的容器 {
     public static void main(String[] args) {
         //给定一个长度为 n 的整数数组 height 。有 n 条垂线，第 i 条线的两个端点是 (i, 0) 和 (i, height[i]) 。
         //
@@ -16,7 +16,7 @@ public class code11 {
         int max=0;
         int l=0,r=len-1;
         for (int i = 0; i < len; i++) {
-            if (height[l]>height[r]){//如果左右两边不相等,那么先移动小的,因为小的决定了水量,大的即使变大也不影响水量
+            if (height[l]>height[r]){//如果左右两边不相等,那先移动小的,因为小的决定了水量,大的即使变大也不影响水量
                 max = Math.max(max, height[r] * (r - l ));
                 r--;
             }else {
