@@ -1,6 +1,6 @@
 package LeeCode;
 
-public class code12 {
+public class code12_整数转罗马数字 {
     public static void main(String[] args) {
         //罗马数字包含以下七种字符： I， V， X， L，C，D 和 M。
         //I : 1     V : 5    X : 10     L : 50
@@ -17,12 +17,13 @@ public class code12 {
         //1994   MCMXCIV
         System.out.println(intToRoman(1994));
     }
-
+    //罗马数字只能表示10000以下的数字,只要将罗马数字能表示的数字找出
+    //从大到小排列,先找大的即可
     public static String intToRoman(int num) {
         //将罗马字母能直接表示的数从大到小排序
         int[] values = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
         String[] symbols = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
-        StringBuffer roman = new StringBuffer();
+        StringBuilder roman = new StringBuilder();
         for (int i = 0; i < values.length; i++) {//遍历排序数组
             int value = values[i];
             String symbol = symbols[i];
