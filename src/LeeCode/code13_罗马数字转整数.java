@@ -2,7 +2,7 @@ package LeeCode;
 
 import java.util.HashMap;
 
-public class code13 {
+public class code13_罗马数字转整数 {
     public static void main(String[] args) {
         //罗马数字包含以下七种字符: I， V， X， L，C，D 和 M。
         //
@@ -22,6 +22,7 @@ public class code13 {
         //"MCMXCIV"输出: 1994  m:1000 cm:900  xc:90  iv:4  1994
         System.out.println(romanToInt("MCMXCIV"));
     }
+
     //map集合处理
     public static int romanToInt(String s) {
         HashMap<Character,Integer> map=new HashMap<>();
@@ -29,9 +30,9 @@ public class code13 {
         int res=0;
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
-            if (i<s.length()-1&&map.get(c)<map.get(s.charAt(i+1))){
+            if (i<s.length()-1&&map.get(c)<map.get(s.charAt(i+1))){//如果下一个字母代表的数字比当前大,按罗马数字规则要减去小的那个
                 res+=map.get(s.charAt(i+1))-map.get(c);
-                i++;
+                i++;//跳过下一个
             }else res+=map.get(c);
         }
         return res;
@@ -52,16 +53,16 @@ public class code13 {
     }
 
     private int getValue(char ch) {
-        switch(ch) {
-            case 'I': return 1;
-            case 'V': return 5;
-            case 'X': return 10;
-            case 'L': return 50;
-            case 'C': return 100;
-            case 'D': return 500;
-            case 'M': return 1000;
-            default: return 0;
-        }
+        return switch (ch) {
+            case 'I' -> 1;
+            case 'V' -> 5;
+            case 'X' -> 10;
+            case 'L' -> 50;
+            case 'C' -> 100;
+            case 'D' -> 500;
+            case 'M' -> 1000;
+            default -> 0;
+        };
     }
 
 //    作者：DoneSpeak
