@@ -2,7 +2,7 @@ package LeeCode;
 
 import java.util.Arrays;
 
-public class code26 {
+public class code26_删除有序数组中的重复项 {
     public static void main(String[] args) {
         //给你一个 升序排列 的数组 nums ，请你 原地 删除重复出现的元素，使每个元素 只出现一次 ，返回删除后数组的新长度。
         // 元素的 相对顺序 应该保持 一致 。然后返回 nums 中唯一元素的个数。
@@ -15,18 +15,16 @@ public class code26 {
         System.out.println(removeDuplicates(nums));
         System.out.println(Arrays.toString(nums));
     }
+    //双指针
     public static int removeDuplicates(int[] nums) {
         int n=nums.length;
         int r=1;//右指针
-        int i = 0;//作为结果长度
+        int i = 0;//左指针,作为结果长度
         while (i < n-1) {
-            while (r<n&&nums[r]==nums[i]) r++;//找到比左指针大的
-            if (r<n){//如果r在范围内说明有比i指针大
-                nums[i+1]=nums[r];
-                r++;//r和i都已经操作,都+1
-                i++;
-            }
-            if (r==n) break;
+            while (r<n&&nums[r]==nums[i]) r++;//找到与左指针不同的
+            if (r<n) {//将右指针的值赋给左指针
+                nums[++i] = nums[r++];
+            }else break;
         }
         return i+1;
     }
