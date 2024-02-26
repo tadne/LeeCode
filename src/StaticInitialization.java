@@ -4,7 +4,7 @@
 //其中:   静态变量随着类的加载而加载,只加载一次
 //非静态变量和构造器  可以多次加载
 public class StaticInitialization {
-    public static void main(String args[]) {    // 第三执行
+    public static void main(String[] args) {    // 第三执行
         System.out.println("main()");   // 18
         cupboard.otherMethod(1);
     }
