@@ -34,9 +34,7 @@ public class code49_字母异位词分组 {
         }
         StringBuilder res=new StringBuilder();
         for (int i : arr) {
-            if (i>9){
-                res.append((char) (i+'a'));
-            }
+            res.append((char) (i+'a'));
         }
         return res.toString();
     }
