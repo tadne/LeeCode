@@ -45,7 +45,6 @@ public class TreeNodeUtil {
     public static void seeTreeNodeByLevel( TreeNode root) {
         List<List<Integer>> res=new ArrayList<>();//结果集
         seeTreeNodeByLevel(root,res,1);//递归遍历二叉树
-        Collections.reverse(res);//反转
         System.out.println(res);
     }
     //递归加入元素
