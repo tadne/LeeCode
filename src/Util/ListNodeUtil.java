@@ -1,6 +1,5 @@
 package Util;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
 
@@ -19,6 +18,15 @@ public class ListNodeUtil {
         }
         return head;
     }
+
+    public static ListNode arrToListNode(List<Integer> list){
+        int[] arr=new int[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            arr[i]=list.get(i);
+        }
+        return arrToListNode(arr);
+    }
+
     public static void printLisNode(ListNode listNode){
         StringJoiner sj=new StringJoiner(",","[","]");
         while (listNode!=null){
