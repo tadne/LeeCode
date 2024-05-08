@@ -39,6 +39,10 @@ public class TreeNodeUtil {
         }
         return generateTreeNodeByArray(list);
     }
+    public static TreeNode generateTreeNodeByArray(Integer[] arr){
+        List<Integer> list = new ArrayList<>(Arrays.asList(arr));
+        return generateTreeNodeByArray(list);
+    }
 
 
     //查看树的层结构
