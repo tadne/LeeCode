@@ -15,13 +15,13 @@ public class code207_课程表 {
         //例如，先修课程对 [0, 1] 表示：想要学习课程 0 ，你需要先完成课程 1 。
         //请你判断是否可能完成所有课程的学习？如果可以，返回 true ；否则，返回 false 。
     }
-    //深度搜索
+    //深度搜索：判断图是否有环
 
     List<List<Integer>> edges;  //存储有向图
     int[] visited;              //标记节点状态来判断环，0：未搜索，1：搜索中，2：搜索完毕
-    boolean valid = true;       //是否有环
+    boolean valid = true;       //是否无环
     public boolean canFinish(int numCourses, int[][] prerequisites) {
-        //存储有向图
+        //存储有向图：可能有环
         edges = new ArrayList<>();
         for (int i = 0; i < numCourses; ++i) {
             edges.add(new ArrayList<>());
@@ -36,19 +36,19 @@ public class code207_课程表 {
         }
         return valid;
     }
-    public void dfs(int u) {
-        visited[u] = 1;//搜索中
-        //遍历u节点的所有方向
-        for (int v: edges.get(u)) {
-            //如果没有搜索过
-            if (visited[v] == 0) {
-                dfs(v);//向下搜索
-                if (!valid) return;//有环
-            } else if (visited[v] == 1) {//遇到搜索中的节点，即环
-                valid = false;
+    private void dfs(int i) {
+        visited[i]=1;
+        //处理下一层节点
+        for (Integer integer : edges.get(i)) {
+            if (visited[integer]==1){//如果该节点是处理中，表示遇到环了
+                valid=false;
                 return;
+            }else if (visited[integer]==0){//如果该节点未处理，就进行递归
+                dfs(integer);
             }
         }
-        visited[u] = 2;//标记状态为：搜索完毕
+        visited[i]=2;
     }
+
+
 }
