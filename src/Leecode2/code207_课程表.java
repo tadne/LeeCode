@@ -1,9 +1,7 @@
 package Leecode2;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class code207_课程表 {
     public static void main(String[] args) {
@@ -30,7 +28,7 @@ public class code207_课程表 {
         for (int[] info : prerequisites) {
             edges.get(info[1]).add(info[0]);
         }
-        //深度优先搜索，从课程0开始
+        //深度优先搜索
         for (int i = 0; i < numCourses && valid; ++i) {
             if (visited[i] == 0) dfs(i);
         }
